@@ -1,0 +1,7 @@
+//Удаление старый файлов из dist
+
+import del from "del";
+
+export const reset = () => {
+    return del([app.path.clean], {force:true});
+}
