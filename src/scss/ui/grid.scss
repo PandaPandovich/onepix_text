@@ -1,0 +1,12 @@
+@import '../mixins/vars';
+
+.container {
+    max-width: 1265px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    @media (max-width:$tablet) {
+        padding: 0 20px;
+    }
+}

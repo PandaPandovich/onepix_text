@@ -1,6 +1,6 @@
 <?php
-add_action('acf/init', 'my_acf_block_hero');
-function my_acf_block_hero()
+add_action('acf/init', 'my_acf_block_menu');
+function my_acf_block_menu()
 {
 
     // Check function exists.
@@ -8,10 +8,10 @@ function my_acf_block_hero()
 
         // Register a testimonial block.
         acf_register_block_type(array(
-            'name'              => 'Hero-block',
-            'title'             => __('Главный блок'),
-            'description'       => __('Главный блок'),
-            'render_callback'   => 'render_hero',
+            'name'              => 'Menu-block',
+            'title'             => __('Блок меню'),
+            'description'       => __('Блок меню'),
+            'render_callback'   => 'render_menu',
             'category'          => 'custom-blocks',
             'mode'              => 'preview',
             'supports'          => array(
@@ -31,7 +31,7 @@ function my_acf_block_hero()
     }
 }
 
-function render_hero($block, $content = '', $is_preview = false, $post_id = 0)
+function render_menu($block, $content = '', $is_preview = false, $post_id = 0)
 {
     // Create id attribute allowing for custom "anchor" value.
     $id = 'text-' . $block['id'];
@@ -48,33 +48,24 @@ function render_hero($block, $content = '', $is_preview = false, $post_id = 0)
     $hero_bg = get_field('hero_bg');
     $hero_image = get_field('hero_img');
 ?>
-    <section id="hero" class="hero">
-        <div class="hero-inner container">
-            <div class="hero__bg">
-                <?php echo wp_get_attachment_image($hero_bg, 'full') ?>
+    <section id="menu" class="menu">
+       <div class="container menu__wrapper">
+            <div class="menu__header">
+                <div class="menu__logo">
+                <?php the_custom_logo(); ?>
+                </div>
             </div>
-            <div class="hero__mask"></div>
-            <div class="hero__content">
-                <?php echo wp_get_attachment_image($hero_image, 'full') ?>
+            <div class="menu__nav">
+                <?php
+
+wp_nav_menu( [
+	'theme_location'  => 'primary',
+	'container'       => 'ul',
+	'menu_class'      => 'menu__list',
+] );
+                ?>
             </div>
-        </div>  
-        <div class="hero__downScroll">
-            <a href="#menu" class="hero__downScroll-link">Листайте вниз</a>
-        </div>
+       </div>
     </section>
 <?php
-
-if($is_preview) {
-    ?>
-    <style>
-        .hero__bg {
-            z-index: 1;
-        }
-
-        .hero__bg img{
-            height:100%;
-        }
-        </style>
-    <?php
-}
 }
