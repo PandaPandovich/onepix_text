@@ -69,6 +69,7 @@ if($is_preview) {
     <style>
         .hero__bg {
             z-index: 1;
+            position:absolute;
         }
 
         .hero__bg img{

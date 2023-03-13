@@ -8,7 +8,7 @@ function misha_custom_block(){
 	// block css
 	wp_enqueue_style(
 		'gutenberg-blocks-css',
-		get_stylesheet_directory_uri() . '/dist/css/bundle.css',
+		get_stylesheet_directory_uri() . '/dist/css/bundle.min.css',
 		array( 'wp-edit-blocks' ),
 		time()
 	);
